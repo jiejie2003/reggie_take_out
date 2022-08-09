@@ -30,7 +30,7 @@ public class LoginCheckFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String requestURI = request.getRequestURI();
-        log.info("拦截到的请求：{}", requestURI);
+//        log.info("拦截到的请求：{}", requestURI);
 
         //1、定义不需要处理的请求路径
         String[] urls = new String[]{
@@ -46,7 +46,7 @@ public class LoginCheckFilter implements Filter {
 
         //3、如果不需要处理，则直接放行
         if (check) {
-            log.info("本次请求{}不需要处理", requestURI);
+//            log.info("本次请求{}不需要处理", requestURI);
             filterChain.doFilter(request, response);
             return;
         }

@@ -1,11 +1,13 @@
 package look.word.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import look.word.reggie.common.R;
 import look.word.reggie.common.aop.LogAnnotation;
 import look.word.reggie.entity.Employee;
 import look.word.reggie.service.EmployeeService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,8 +84,6 @@ public class EmployeeController {
      */
     @PostMapping
     public R<String> save(HttpServletRequest request, @RequestBody Employee employee) {
-        log.info("新增员工，员工信息：{}", employee.toString());
-
         //设置初始密码123456，需要进行md5加密处理
         employee.setPassword(DigestUtils.md5DigestAsHex(employee.getPhone().getBytes()));
 
@@ -98,5 +98,50 @@ public class EmployeeController {
 
         employeeService.save(employee);
         return R.success("新增员工成功");
+    }
+
+    /**
+     * 员工信息分页查询
+     *
+     * @param page     当前查询页码
+     * @param pageSize 每页展示记录数
+     * @param name     员工姓名 - 可选参数
+     * @return
+     */
+    @LogAnnotation(module = "员工信息分页查询", operation = "员工信息分页查询")
+    @GetMapping("/page")
+    public R<Page> page(int page, int pageSize, String name) {
+        //构造分页构造器
+        Page pageInfo = new Page(page, pageSize);
+
+        //构造条件构造器
+        LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper();
+        //添加过滤条件
+        queryWrapper.like(StringUtils.isNotEmpty(name), Employee::getName, name);
+        //添加排序条件
+        queryWrapper.orderByDesc(Employee::getUpdateTime);
+
+        //执行查询
+        employeeService.page(pageInfo, queryWrapper);
+        return R.success(pageInfo);
+    }
+
+    /**
+     * 根据id修改员工信息
+     *
+     * @param employee
+     * @return
+     */
+    @PutMapping
+    public R<String> update(HttpServletRequest request, @RequestBody Employee employee) {
+        log.info(employee.toString());
+
+        Long empId = (Long) request.getSession().getAttribute("employee");
+
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(empId);
+        employeeService.updateById(employee);
+
+        return R.success("员工信息修改成功");
     }
 }
