@@ -2,6 +2,9 @@ package look.word.reggie.entity;
 
 import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
@@ -48,18 +51,22 @@ public class Employee extends Model<Employee> {
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE) // 做这些操作，自动填充
     private LocalDateTime createTime;
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
     /**
      * 创建人
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long createUser;
     /**
      * 修改人
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
 
