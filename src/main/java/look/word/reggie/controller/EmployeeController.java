@@ -111,6 +111,7 @@ public class EmployeeController {
     @LogAnnotation(module = "员工信息分页查询", operation = "员工信息分页查询")
     @GetMapping("/page")
     public R<Page> page(int page, int pageSize, String name) {
+        long id = Thread.currentThread().getId();
         //构造分页构造器
         Page pageInfo = new Page(page, pageSize);
 
@@ -135,8 +136,9 @@ public class EmployeeController {
     @LogAnnotation(module = "修改员工信息", operation = "修改员工信息")
     @PutMapping
     public R<String> update(HttpServletRequest request, @RequestBody Employee employee) {
-        Long empId = (Long) request.getSession().getAttribute("employee");
-
+        long id = Thread.currentThread().getId();
+        log.info("线程id为：{}",id);
+//        Long empId = (Long) request.getSession().getAttribute("employee");
 //        employee.setUpdateTime(LocalDateTime.now());
 //        employee.setUpdateUser(empId);
         employeeService.updateById(employee);
@@ -146,14 +148,15 @@ public class EmployeeController {
 
     /**
      * 根据id查询员工信息
+     *
      * @param id
      * @return
      */
     @GetMapping("/{id}")
-    public R<Employee> getById(@PathVariable Long id){
+    public R<Employee> getById(@PathVariable Long id) {
         log.info("根据id查询员工信息...");
         Employee employee = employeeService.getById(id);
-        if(employee != null){
+        if (employee != null) {
             return R.success(employee);
         }
         return R.error("没有查询到对应员工信息");
