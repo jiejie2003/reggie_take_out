@@ -2,58 +2,69 @@ package look.word.reggie.entity;
 
 import java.time.LocalDateTime;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
- * 菜品及套餐分类(Category)表实体类
+ * 套餐(Setmeal)表实体类
  *
  * @author LookWord
- * @since 2022-08-09 15:22:04
+ * @since 2022-08-09 16:18:33
  */
 @Data
 @SuppressWarnings("serial")
-public class Category extends Model<Category> {
+public class Setmeal extends Model<Setmeal> {
     /**
      * 主键
      */
     private Long id;
     /**
-     * 类型   1 菜品分类 2 套餐分类
+     * 菜品分类id
      */
-    private Integer type;
+    private Long categoryId;
     /**
-     * 分类名称
+     * 套餐名称
      */
     private String name;
     /**
-     * 顺序
+     * 套餐价格
      */
-    private Integer sort;
+    private Double price;
+    /**
+     * 状态 0:停用 1:启用
+     */
+    private Integer status;
+    /**
+     * 编码
+     */
+    private String code;
+    /**
+     * 描述信息
+     */
+    private String description;
+    /**
+     * 图片
+     */
+    private String image;
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     /**
      * 更新时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
     /**
      * 创建人
      */
-    @TableField(fill = FieldFill.INSERT)
     private Long createUser;
     /**
      * 修改人
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
-
     /**
      * 逻辑删除 0 未删除 1 已删除
      */
