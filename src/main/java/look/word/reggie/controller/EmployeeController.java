@@ -30,7 +30,7 @@ public class EmployeeController {
      * @param employee
      * @return
      */
-    @LogAnnotation(module = "文章", operation = "首页分页文章列表")
+    @LogAnnotation(module = "登陆", operation = "登陆接口")
     @PostMapping("/login")
     public R<Employee> login(HttpServletRequest request, @RequestBody Employee employee) {
         //1、将页面提交的密码password进行md5加密处理
@@ -64,11 +64,12 @@ public class EmployeeController {
 
     /**
      * 员工退出
+     *
      * @param request
      * @return
      */
     @PostMapping("/logout")
-    public R<String> logout(HttpServletRequest request){
+    public R<String> logout(HttpServletRequest request) {
         //清理Session中保存的当前登录员工的id
         request.getSession().removeAttribute("employee");
         return R.success("退出成功");
