@@ -122,7 +122,6 @@
                 tableData: [],
                 id: '',
                 status: '',
-                createTime: '',
             }
         },
         computed: {},
@@ -172,7 +171,6 @@
             statusHandle(row) {
                 this.id = row.id
                 this.status = row.status
-                this.createTime = row.createTime
                 console.log("--行", row)
                 this.$confirm('确认调整该账号的状态?', '提示', {
                     'confirmButtonText': '确定',
@@ -182,8 +180,8 @@
                     enableOrDisableEmployee({
                         'id': this.id,
                         'status': !this.status ? 1 : 0,
-                        'createTime': row.createTime,
-                        'createUser': row.createUser,
+                        // 'createTime': row.createTime,
+                        // 'createUser': row.createUser,
                     }).then(res => {
                         console.log('enableOrDisableEmployee', res)
                         if (String(res.code) === '1') {

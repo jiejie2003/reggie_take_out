@@ -51,7 +51,7 @@ public class Employee extends Model<Employee> {
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE) // 做这些操作，自动填充
+    @TableField(fill = FieldFill.INSERT) // 做这些操作，自动填充
     private LocalDateTime createTime;
     /**
      * 更新时间
@@ -61,7 +61,7 @@ public class Employee extends Model<Employee> {
     /**
      * 创建人
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT)
     private Long createUser;
     /**
      * 修改人
