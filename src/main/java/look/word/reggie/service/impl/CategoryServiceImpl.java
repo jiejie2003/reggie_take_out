@@ -3,13 +3,13 @@ package look.word.reggie.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import look.word.reggie.common.CustomException;
+import look.word.reggie.mapper.CategoryMapper;
 import look.word.reggie.pojo.entity.Category;
 import look.word.reggie.pojo.entity.Dish;
 import look.word.reggie.pojo.entity.Setmeal;
-import look.word.reggie.mapper.CategoryMapper;
 import look.word.reggie.service.CategoryService;
 import look.word.reggie.service.DishService;
-import look.word.reggie.service.SetMealService;
+import look.word.reggie.service.SetmealService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     private DishService dishService;
 
     @Resource
-    private SetMealService setMealService;
+    private SetmealService setMealService;
 
     @Override
     public void remove(Long id) {
