@@ -1,6 +1,7 @@
 package look.word.reggie.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.prism.impl.BaseContext;
 import lombok.extern.slf4j.Slf4j;
 import look.word.reggie.common.R;
 import look.word.reggie.service.UserThreadLocal;
@@ -40,7 +41,9 @@ public class LoginCheckFilter implements Filter {
                 "/employee/login",
                 "/employee/logout",
                 "/backend/**",
-                "/front/**"
+                "/front/**",
+                "/user/sendMsg",
+                "/user/login"
         };
 
         //2、判断本次请求是否需要处理
@@ -53,13 +56,24 @@ public class LoginCheckFilter implements Filter {
             return;
         }
 
-        //4、判断登录状态，如果已登录，则直接放行
+        //4-1、判断登录状态，如果已登录，则直接放行
         if (request.getSession().getAttribute("employee") != null) {
             Long empId = (Long) request.getSession().getAttribute("employee");
             log.info("用户已登录，用户id为：{}", empId);
             UserThreadLocal.setCurrentId(empId);
             filterChain.doFilter(request, response);
-            log.info("清除threadLocal");
+            log.info("清除employee的threadLocal");
+            UserThreadLocal.remove();
+            return;
+        }
+        //4-2、判断登录状态，如果已登录，则直接放行
+        if (request.getSession().getAttribute("user") != null) {
+            log.info("用户已登录，用户id为：{}", request.getSession().getAttribute("user"));
+
+            Long userId = (Long) request.getSession().getAttribute("user");
+            UserThreadLocal.setCurrentId(userId);
+            filterChain.doFilter(request, response);
+            log.info("清除user的threadLocal");
             UserThreadLocal.remove();
             return;
         }
