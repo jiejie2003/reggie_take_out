@@ -18,7 +18,16 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-      id-type: ASSIGN_ID
-      logic-delete-field: deleted
+      id-type: ASSIGN_ID # 全局配置数据库id生成的策略
+      logic-delete-field: deleted # 全局逻辑删除的实体字段名(实体类)
       logic-delete-value: 1 # 逻辑已删除值(默认为1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为0)
+
+
+# 阿里云oss
+aliyun:
+  oss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    keyId: LTAI5tCjroZZ3mZyecD2ZukY
+    keySecret: iRJLcFoenjM5APhrnVCVLEJbH41QJH
+    bucketName: srb-file-2022-look
