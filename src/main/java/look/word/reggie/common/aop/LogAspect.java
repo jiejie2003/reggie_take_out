@@ -56,6 +56,7 @@ public class LogAspect {
 
     private void recordLog(ProceedingJoinPoint joinPoint, long time) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        // 获取当前方法
         Method method = signature.getMethod();
         LogAnnotation logAnnotation = method.getAnnotation(LogAnnotation.class);
         log.info("=====================log start================================");
@@ -67,7 +68,7 @@ public class LogAspect {
         String methodName = signature.getName();
         log.info("request method:{}", className + "." + methodName + "()");
 
-//        //请求的参数
+        //请求的参数
         Object[] args = joinPoint.getArgs();
         Stream<?> stream = ArrayUtils.isEmpty(args) ? Stream.empty() : Arrays.stream(args);
         List<Object> logArgs =
@@ -79,10 +80,7 @@ public class LogAspect {
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
         log.info("ip:{}", IpUtils.getIpAddr(request));
 
-
         log.info("execute time : {} ms", time);
         log.info("=====================log end================================");
     }
-
-
 }
