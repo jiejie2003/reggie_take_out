@@ -2,8 +2,7 @@ package look.word.reggie.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import look.word.reggie.CustomException;
-import look.word.reggie.common.GlobalExceptionHandler;
+import look.word.reggie.common.CustomException;
 import look.word.reggie.entity.Category;
 import look.word.reggie.entity.Dish;
 import look.word.reggie.entity.Setmeal;

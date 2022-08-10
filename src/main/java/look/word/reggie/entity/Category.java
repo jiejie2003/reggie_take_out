@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
@@ -33,6 +34,7 @@ public class Category extends Model<Category> {
      * 顺序
      */
     private Integer sort;
+
     /**
      * 创建时间
      */
@@ -53,10 +55,10 @@ public class Category extends Model<Category> {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
-
     /**
      * 逻辑删除 0 未删除 1 已删除
      */
+    @TableLogic(value = "0", delval = "1")
     @TableField(value = "is_deleted")
     private Integer deleted;
 

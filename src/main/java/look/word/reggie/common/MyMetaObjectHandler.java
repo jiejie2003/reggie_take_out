@@ -16,8 +16,6 @@ import java.time.LocalDateTime;
 public class MyMetaObjectHandler implements MetaObjectHandler {
     /**
      * 插入操作，自动填充
-     *
-     * @param metaObject
      */
     @Override
     public void insertFill(MetaObject metaObject) {
@@ -32,8 +30,6 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     /**
      * 更新操作，自动填充
-     *
-     * @param metaObject
      */
     @Override
     public void updateFill(MetaObject metaObject) {

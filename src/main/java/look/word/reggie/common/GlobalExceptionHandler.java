@@ -1,7 +1,6 @@
 package look.word.reggie.common;
 
 import lombok.extern.slf4j.Slf4j;
-import look.word.reggie.CustomException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
