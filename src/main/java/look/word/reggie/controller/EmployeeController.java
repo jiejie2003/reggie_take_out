@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import look.word.reggie.common.R;
 import look.word.reggie.common.aop.LogAnnotation;
-import look.word.reggie.entity.Employee;
+import look.word.reggie.pojo.entity.Employee;
 import look.word.reggie.service.EmployeeService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.DigestUtils;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
 
 @Slf4j
 @RestControllerAdvice

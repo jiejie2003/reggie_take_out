@@ -2,7 +2,7 @@
 package look.word.reggie.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import look.word.reggie.entity.Employee;
+import look.word.reggie.pojo.entity.Employee;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

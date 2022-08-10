@@ -1,40 +1,39 @@
-package look.word.reggie.entity;
+package look.word.reggie.pojo.entity;
 
 import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
- * 菜品及套餐分类(Category)表实体类
+ * 菜品口味关系表(DishFlavor)表实体类
  *
  * @author LookWord
- * @since 2022-08-09 15:22:04
+ * @since 2022-08-10 09:09:39
  */
 @Data
 @SuppressWarnings("serial")
-public class Category extends Model<Category> {
+public class DishFlavor extends Model<DishFlavor> {
     /**
      * 主键
      */
     private Long id;
     /**
-     * 类型   1 菜品分类 2 套餐分类
+     * 菜品
      */
-    private Integer type;
+    private Long dishId;
     /**
-     * 分类名称
+     * 口味名称
      */
     private String name;
     /**
-     * 顺序
+     * 口味数据list
      */
-    private Integer sort;
-
+    private String value;
     /**
      * 创建时间
      */
@@ -58,7 +57,6 @@ public class Category extends Model<Category> {
     /**
      * 逻辑删除 0 未删除 1 已删除
      */
-    @TableLogic(value = "0", delval = "1")
     @TableField(value = "is_deleted")
     private Integer deleted;
 
