@@ -54,11 +54,6 @@ public class DishFlavor extends Model<DishFlavor> {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
-    /**
-     * 逻辑删除 0 未删除 1 已删除
-     */
-    @TableField(value = "is_deleted")
-    private Integer deleted;
 
 
 }

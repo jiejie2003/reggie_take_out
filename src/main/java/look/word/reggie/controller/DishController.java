@@ -93,4 +93,15 @@ public class DishController {
         DishDto dishDto = dishService.getByIdWithFlavor(id);
         return R.success(dishDto);
     }
+
+    /**
+     * 修改菜品
+     */
+    @LogAnnotation(module = "菜品管理", operation = "修改菜品")
+    @PutMapping
+    public R<String> update(@RequestBody DishDto dishDto){
+        log.info(dishDto.toString());
+        dishService.updateWithFlavor(dishDto);
+        return R.success("修改菜品成功");
+    }
 }
