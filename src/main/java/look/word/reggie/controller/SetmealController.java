@@ -7,6 +7,7 @@ import look.word.reggie.common.R;
 import look.word.reggie.common.aop.LogAnnotation;
 import look.word.reggie.pojo.dto.SetmealDto;
 import look.word.reggie.pojo.entity.Category;
+import look.word.reggie.pojo.entity.Dish;
 import look.word.reggie.pojo.entity.Setmeal;
 import look.word.reggie.service.CategoryService;
 import look.word.reggie.service.SetmealDishService;
@@ -85,5 +86,22 @@ public class SetmealController {
     public R<String> delete(@RequestParam List<Long> ids) {
         setmealService.removeWithDish(ids);
         return R.success("套餐数据删除成功");
+    }
+
+    /**
+     * 根据条件查询套餐数据
+     *
+     * @param setmeal
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<Setmeal>> list(Setmeal setmeal) {
+        LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId());
+        queryWrapper.eq(setmeal.getStatus() != null, Setmeal::getStatus, setmeal.getStatus());
+        queryWrapper.orderByDesc(Setmeal::getUpdateTime);
+
+        List<Setmeal> list = setmealService.list(queryWrapper);
+        return R.success(list);
     }
 }

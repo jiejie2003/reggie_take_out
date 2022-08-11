@@ -8,6 +8,7 @@ import look.word.reggie.common.aop.LogAnnotation;
 import look.word.reggie.pojo.dto.DishDto;
 import look.word.reggie.pojo.entity.Category;
 import look.word.reggie.pojo.entity.Dish;
+import look.word.reggie.pojo.entity.DishFlavor;
 import look.word.reggie.service.CategoryService;
 import look.word.reggie.service.DishFlavorService;
 import look.word.reggie.service.DishService;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +31,6 @@ public class DishController {
     @Resource
     private DishService dishService;
 
-    @Resource
-    private DishFlavorService dishFlavorService;
 
     @Resource
     private CategoryService categoryService;
@@ -105,11 +105,15 @@ public class DishController {
         return R.success("修改菜品成功");
     }
 
+    @Resource
+    private DishFlavorService dishFlavorService;
+
     /**
      * 根据条件查询对应的菜品数据
      */
     @GetMapping("/list")
-    public R<List<Dish>> list(Dish dish) {
+    public R<List<DishDto>> list(Dish dish) {
+        List<DishDto> dto = new ArrayList<>();
         // 分类id
         Long categoryId = dish.getCategoryId();
         //构造查询条件
@@ -121,6 +125,15 @@ public class DishController {
         //添加排序条件
         queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
         List<Dish> list = dishService.list(queryWrapper);
-        return R.success(list);
+        // 查询出口味信息
+        dto = list.stream().map((item) -> {
+            DishDto dishDto = new DishDto();
+            BeanUtils.copyProperties(item, dishDto);
+            LambdaQueryWrapper<DishFlavor> q = new LambdaQueryWrapper<>();
+            q.eq(DishFlavor::getDishId, item.getId());
+            dishDto.setFlavors(dishFlavorService.list(q));
+            return dishDto;
+        }).collect(Collectors.toList());
+        return R.success(dto);
     }
 }
