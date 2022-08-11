@@ -293,7 +293,7 @@
                 this.cartData.forEach(item => {
                     price += (item.number * item.amount)
                 })
-                return price
+                return price.toFixed(2) // 保留两位小数
             }
         },
         created() {
