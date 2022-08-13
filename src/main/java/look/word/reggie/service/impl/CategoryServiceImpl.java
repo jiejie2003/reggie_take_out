@@ -11,9 +11,11 @@ import look.word.reggie.service.CategoryService;
 import look.word.reggie.service.DishService;
 import look.word.reggie.service.SetmealService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+@Transactional
 @Service
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
     @Resource

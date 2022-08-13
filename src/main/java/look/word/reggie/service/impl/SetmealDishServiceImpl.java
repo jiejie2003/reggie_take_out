@@ -6,7 +6,9 @@ import look.word.reggie.mapper.SetmealDishMapper;
 import look.word.reggie.pojo.entity.SetmealDish;
 import look.word.reggie.service.SetmealDishService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 @Slf4j
 public class SetmealDishServiceImpl extends ServiceImpl<SetmealDishMapper, SetmealDish> implements SetmealDishService {

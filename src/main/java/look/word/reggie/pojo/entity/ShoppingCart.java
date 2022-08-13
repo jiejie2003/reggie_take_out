@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
@@ -59,6 +60,12 @@ public class ShoppingCart extends Model<ShoppingCart> {
      * 创建时间
      */
     private LocalDateTime createTime;
+
+    /**
+     * 逻辑删除 0 未删除 1 已删除
+     */
+    @TableField(value = "is_deleted")
+    private Integer deleted;
 
 
 }

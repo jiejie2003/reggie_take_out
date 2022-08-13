@@ -26,7 +26,7 @@
             </div>
             <div class="divContent">
                 <div class="divAddress">
-                    <div @click="toAddressPage">                    
+                    <div @click="toAddressPage">
                         <div class="address">{{address.detail}}</div>
                         <div class="name">
                             <span>{{address.consignee}}{{address.sex === '1' ? '先生':'女士'}}</span>
@@ -42,7 +42,8 @@
                     <div class="divSplit"></div>
                     <div class="itemList">
                         <div class="item" v-for="(item,index) in cartData" :key="index">
-                            <el-image :src="imgPathConvert(item.image)">
+<!--                            <el-image :src="imgPathConvert(item.image)">-->
+                            <el-image :src="item.image">
                                 <div slot="error" class="image-slot">
                                     <img src="./../images/noImg.png"/>
                                 </div>
@@ -87,7 +88,7 @@
         <!-- 引入组件库 -->
         <script src="../../backend/plugins/element-ui/index.js"></script>
         <!-- 引入vant样式 -->
-        <script src="./../js/vant.min.js"></script>      
+        <script src="./../js/vant.min.js"></script>
         <script src="./../api/address.js"></script>
         <!-- 引入axios -->
         <script src="../../backend/plugins/axios/axios.min.js"></script>
@@ -116,7 +117,7 @@
                     goodsNum(){
                         let num = 0
                         this.cartData.forEach(item=>{
-                            num += item.number 
+                            num += item.number
                         })
                         if(num <99){
                             return num

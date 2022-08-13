@@ -5,7 +5,9 @@ import look.word.reggie.mapper.AddressBookMapper;
 import look.word.reggie.pojo.entity.AddressBook;
 import look.word.reggie.service.AddressBookService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class AddressBookServiceImpl extends ServiceImpl<AddressBookMapper, AddressBook> implements AddressBookService {
 }

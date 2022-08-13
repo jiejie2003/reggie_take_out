@@ -57,7 +57,6 @@ public class Category extends Model<Category> {
     /**
      * 逻辑删除 0 未删除 1 已删除
      */
-    @TableLogic(value = "0", delval = "1")
     @TableField(value = "is_deleted")
     private Integer deleted;
 

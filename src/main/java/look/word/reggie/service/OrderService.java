@@ -9,7 +9,11 @@ import look.word.reggie.pojo.entity.Orders;
  * @author LookWord
  * @since 2022-08-11 14:57:24
  */
-public interface OrdersService extends IService<Orders> {
+public interface OrderService extends IService<Orders> {
 
+    /**
+     * 用户下单
+     */
+    void submit(Orders orders);
 }
 

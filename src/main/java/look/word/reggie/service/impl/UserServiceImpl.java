@@ -5,7 +5,9 @@ import look.word.reggie.mapper.UserMapper;
 import look.word.reggie.pojo.entity.User;
 import look.word.reggie.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 }
