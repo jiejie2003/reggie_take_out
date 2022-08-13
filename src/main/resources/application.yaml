@@ -28,6 +28,6 @@ mybatis-plus:
 aliyun:
   oss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
-    keyId: LTAI5tCjroZZ3mZyecD2ZukY
-    keySecret: iRJLcFoenjM5APhrnVCVLEJbH41QJH
+    keyId: x
+    keySecret: x
     bucketName: srb-file-2022-look
